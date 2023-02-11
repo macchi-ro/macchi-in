@@ -1,0 +1,56 @@
+<h2>マイページ編集</h2>
+
+<%= form_with model: @customer, url: customers_path(@customer), method: :patch do |f| %>
+
+<table class="font-weight-bold mt-3 ml-5 small">
+  <thead>
+    <tr>
+      <th></th>
+      <th style="width: 400px"></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>メール</td>
+      <td><%= f.text_field :email, autofocus: true, autocomplete: "email" %></td>
+    </tr>
+
+    <tr>
+      <td>氏名</td>
+      <td><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>  <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %></td>
+    </tr>
+
+    <tr>
+      <td>氏名(カナ)</td>
+      <td><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name" %>  <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name" %></td>
+    </tr>
+
+    <tr>
+      <td>郵便番号</td>
+      <td><%= f.text_field :address_number, autofocus: true, autocomplete: "address_number" %></td>
+    </tr>
+
+    <tr>
+      <td>住所</td>
+      <td><%= f.text_field :address, autofocus: true, autocomplete: "address" %></td>
+    </tr>
+
+    <tr>
+      <td>性別</td>
+      <td>
+       <%= f.radio_button :gender, "男性", class: "checkbox" %>
+       <%= f.label :gender, "男性", class: "radio" %>
+       <%= f.radio_button :gender, "女性", class: "checkbox" %>
+       <%= f.label :gender, "女性", class: "radio" %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>年代</td>
+      <td><%= f.select :age, [[20], [30], [40], [50], [60], [70], [80]], include_blank: "年代選択" %>代</td>
+    </tr>
+  </tbody>
+</table>
+<%= f.submit '▶編集完了' %>
+<% end %>

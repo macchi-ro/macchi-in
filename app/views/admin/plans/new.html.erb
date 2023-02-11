@@ -1,0 +1,37 @@
+<h2>プラン新規登録</h2>
+
+   <%= form_with model: @plan, url:admin_plans_path, local:true do |f| %>
+
+      <label>プラン名</label>
+      <div><%= f.text_field :name %></div>
+
+      <label>プラン画像</label>
+      <div><%= f.file_field :image, accept: "image/*" %></div>
+
+      <label>料金(税抜)</label>
+      <div><%= f.text_field :tax_excluded_fee %>円</div>
+
+      <label>素泊まり/食事付き</label>
+      <div class="col-lg-4">
+       <%= f.radio_button :meal, Plan.meals.key(0) %>
+       <%= f.label :meal_no_meal, Plan.meals_i18n[:no_meal] %>
+       <%= f.radio_button :meal, Plan.meals.key(1) %>
+       <%= f.label :meal_has_meal, Plan.meals_i18n[:has_meal] %>
+      </div>
+
+      <label>プラン説明</label>
+      <div><%= f.text_area :description %></div>
+
+      <label>販売ステータス</label>
+      <div class="col-lg-4">
+       <%= f.radio_button :sales_status, Plan.sales_statuses.key(0) %>
+       <%= f.label :sales_status_stopping_sales, Plan.sales_statuses_i18n[:stopping_sales] %>
+       <%= f.radio_button :sales_status, Plan.sales_statuses.key(1) %>
+       <%= f.label :sales_status_on_sale, Plan.sales_statuses_i18n[:on_sale] %>
+      </div>
+
+      <div>
+       <%= f.submit '▶プラン登録' %>
+      </div>
+
+    <% end %>

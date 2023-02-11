@@ -1,0 +1,15 @@
+<h2>投稿編集</h2>
+
+  <%= form_with model: @comment, url: admin_comment_path(@comment.id), method: :patch do |f| %>
+
+    <label>表題</label>
+    <div><%= f.text_field :title %></div>
+
+    <label>内容</label>
+    <div><%= f.text_area :content %></div>
+
+    <div><%= f.submit '▶編集する' %></div>
+
+  <% end %>
+
+  <div><%= link_to "編集を止める", admin_comments_path %></div>

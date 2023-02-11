@@ -1,0 +1,33 @@
+<h2>部屋タイプ新規登録</h2>
+
+   <%= form_with model: Room, url:admin_rooms_path, local:true do |f| %>
+
+    <label>イメージ</label>
+    <div><%= f.file_field :image, accept: "image/*" %></div>
+
+    <label>部屋タイプ名</label>
+    <div><%= f.text_field :name, value: @name %></div>
+
+    <div><%= f.submit '▶新規登録' %></div>
+
+  <% end %>
+
+<h2>部屋タイプ一覧</h2>
+   <table>
+    <thead>
+     <tr>
+      <th>イメージ</th>
+      <th>部屋タイプ名</th>
+      <th></th>
+     </tr>
+  </thead>
+   <tbody>
+    <tr>
+     <% @rooms.each do |room| %>
+     <td><%= image_tag room.image, size: "60x60" %></td>
+     <td><%= room.name %></td>
+     <td><%= link_to "▶編集", edit_admin_room_path(room.id) %></td>
+    </tr>
+   <% end %>
+     </tbody>
+    </table>

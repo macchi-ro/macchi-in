@@ -1,0 +1,36 @@
+<h2>プラン一覧</h2>
+
+  <%= link_to "▶新規プラン登録",new_admin_plan_path %>
+
+   <table>
+    <thead>
+     <tr>
+      <th>プランID</th>
+      <th>イメージ</th>
+      <th>プラン名</th>
+      <th>税込価格</th>
+      <th>食事付き/無し</th>
+      <th>販売ステータス</th>
+      <th>会員お気に入り数</th>
+     </tr>
+    </thead>
+    <tbody>
+     <% @plans.each do |plan| %>
+     <tr>
+      <td><%= plan.id %></td>
+      <td><%= image_tag plan.image, size: "60x60" %></td>
+      <td><%= link_to plan.name, admin_plan_path(plan.id) %></td>
+      <td><%= (plan.tax_excluded_fee * 1.1).floor %>円</td>
+      <td><%= plan.meal_i18n %></td>
+      <td><% if plan.sales_status %>
+             <span class="text-success">販売中</span>
+          <% else plan.sales_status %>
+             <span class="text-secondary">販売停止中</span>
+          <% end %>
+      </td>
+      <!--お気に入り挿入箇所-->
+      <td>♥<%= plan.favorites.count %>件</td>
+     </tr>
+     <% end %>
+    </tbody>
+   </table>

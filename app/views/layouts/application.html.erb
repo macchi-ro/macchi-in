@@ -10,7 +10,123 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+<body>
+<header style="width: 100%; background-color: #F3F1EA">
+
+  <div>
+    <nav class="navbar navbar-expand-sm">
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="container-fluid">
+        <% if customer_signed_in? %>
+
+        <% end %>
+
+        <% if admin_signed_in? %>
+        <div class="justify-content-end">
+
+          <ul class="navbar-nav list-unstyled">
+            <li>
+              <%=  link_to admin_customers_path,class: 'm-4 nav-link btn btn-outline-secondary' do %>
+                会員一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_reservations_path,class: 'm-4 nav-link btn btn-outline-secondary' do %>
+                予約一覧
+              <% end %>
+            </li>
+            <li>
+              <%=  link_to admin_plans_path ,class: 'm-4 nav-link btn btn-outline-secondary' do %>
+                プラン一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_rooms_path,class: 'm-4 nav-link btn btn-outline-secondary' do %>
+                部屋一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_comments_path,class: 'm-4 nav-link btn btn-outline-secondary' do %>
+                投稿一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_admin_session_path, method: :delete,class: 'm-4 nav-link btn btn-outline-secondary' do %>
+                ログアウト
+                <% end %>
+            </li>
+          </ul>
+        </div>
+
+        <% elsif customer_signed_in? %>
+      <div class="collapse navbar-collapse justify-content-end">
+          <ul class="navbar-nav ml-auto list-unstyled">
+            <li class="d-flex align-items-center">
+              ようこそ、<%= @customer.last_name %>さん！
+            </li>
+            <li>
+              <%= link_to customers_path,class: 'm-4 nav-link btn btn-outline-secondary' do %>
+                マイページ
+               <% end %>
+            </li>
+            <li>
+              <%= link_to favorites_customers_path,class: 'm-4 nav-link btn btn-outline-secondary' do %>
+               お気に入り一覧
+              <% end %>
+            </li>
+            <li>
+              <%=  link_to reservations_path ,class: 'm-4 nav-link btn btn-outline-secondary' do %>
+                予約一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_customer_session_path, method: :delete,class: 'm-4 nav-link btn btn-outline-secondary' do %>
+                ログアウト
+              <% end %>
+            </li>
+          </ul>
+            <div>
+             <%= link_to plans_path do %>
+              ▶プラン一覧はコチラ
+             <% end %>
+            </div>
+        </div>
+<!--render 'layouts/search' -->
+        <% else %>
+
+        <div class="collapse navbar-collapse justify-content-end">
+          <ul class="navbar-nav ml-auto list-unstyled">
+            <li>
+              <%= link_to new_customer_registration_path,class: 'm-4 nav-link btn btn-outline-secondary' do %>
+                新規登録
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_customer_session_path ,class: 'm-4 nav-link btn btn-outline-secondary' do %>
+                ログイン
+              <% end %>
+            </li>
+          </ul>
+        </div>
+        <% end %>
+      </div>
+    </nav>
+  </div>
+  <div class="text-success">
+   <%= flash[:notice] %>
+  </div>
+
+  <div class="text-danger">
+   <%= flash[:alert] %>
+  </div>
+
+</header>
+
+
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,36 @@
+<h2>施設概要</h2>
+
+※レイアウト時に挿入予定
+
+<!--コメント新規投稿-->
+<h2>お客様の声</h2>
+
+  <%= form_with model: Comment, url:comments_path, local:true do |f| %>
+    <label>表題</label>
+    <div><%= f.text_field :title, value: @title %></div>
+
+    <label>内容</label>
+    <div><%= f.text_area :content, value: @content %></div>
+         <%= f.hidden_field :customer_id, :value => @customer.id %>
+    <div><%= f.submit '▶投稿する' %></div>
+
+    <% end %>
+<!--コメント一覧-->
+<h2>皆様からの声</h2>
+
+   <table>
+    <thead>
+     <tr>
+      <th>表題</th>
+      <th>内容</th>
+     </tr>
+  </thead>
+   <tbody>
+    <tr>
+     <% @comments.each do |comment| %>
+     <td><%= comment.title %></td>
+     <td><%= comment.content %></td>
+    </tr>
+    <% end %>
+     </tbody>
+    </table>

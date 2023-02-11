@@ -1,0 +1,29 @@
+<div>お気に入りプラン一覧 (全<%= @favorite_plans.count %>件) </div>
+
+     <% @favorite_plans.each do |plan|%>
+    <% if plan.favorited_by?(current_customer) %>
+      <!--# 一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
+      <%= link_to plan_favorites_path(plan.id), method: :delete do %>
+        <span style="color:red;">❤︎</span>
+      <% end %>
+      <% else %>
+      <!--# 一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
+      <%= link_to plan_favorites_path(plan.id), method: :post do %>
+        <span>❤︎</span>
+      <% end %>
+    <% end %>
+        <div>
+          <%= link_to plan_path(plan.id) do %>
+            <%= image_tag plan.image, size: "150x150"%><br>
+          <% end %>
+        </div>
+
+        <div>
+          <%= plan.name %>
+        </div>
+
+        <div>
+        <%= (plan.tax_excluded_fee * 1.1).floor %>円(税込)
+        </div>
+    <% end %>
+

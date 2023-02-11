@@ -1,0 +1,15 @@
+<h2>部屋タイプ編集</h2>
+
+  <%= form_with model: @room, url: admin_room_path(@room.id), method: :patch do |f| %>
+
+    <label>イメージ</label>
+    <div><%= f.file_field :image, accept: "image/*" %></div>
+
+    <label>部屋タイプ名</label>
+    <div><%= f.text_field :name %></div>
+
+    <div><%= f.submit '▶編集する' %></div>
+
+  <% end %>
+
+  <div><%= link_to "編集を止める", admin_rooms_path %></div>

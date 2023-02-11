@@ -1,0 +1,89 @@
+<!--予約内容の確認-->
+<h2>予約確認</h2>
+    <table>
+     <tbody>
+      <tr>
+        <td>宿泊日</td>
+        <td><%= @reservation.lodgment_date.strftime('%Y/%m/%d') %></td>
+      </tr>
+
+      <tr>
+        <td>泊数</td>
+        <td><%= @reservation.nights_number %>泊</td>
+      </tr>
+
+      <tr>
+        <td>人数</td>
+        <td><%= @reservation.count %>人</td>
+      </tr>
+
+      <tr>
+        <td>室数</td>
+        <td><%= @reservation.room_number %>室</td>
+      </tr>
+
+      <tr>
+        <td>部屋タイプ</td>
+        <td><%= @reservation.room.name %></td>
+      </tr>
+
+      <tr>
+        <td>備考/要望</td>
+        <td><%= @reservation.note %></td>
+      </tr>
+
+    </tbody>
+   </table>
+
+<!--顧客情報確認-->
+<h2>お客様情報</h2>
+    <table>
+     <tbody>
+      <tr>
+        <td>メール</td>
+        <td><%= @reservation.customer.email %></td>
+      </tr>
+
+      <tr>
+        <td>氏名</td>
+        <td><%= @reservation.customer.last_name %>  <%= @reservation.customer.first_name %></td>
+      </tr>
+
+      <tr>
+        <td>氏名(カナ)</td>
+        <td><%= @reservation.customer.last_name_kana %>  <%= @reservation.customer.first_name_kana %></td>
+      </tr>
+
+      <tr>
+        <td>郵便番号</td>
+        <td><%= @reservation.customer.address_number %></td>
+      </tr>
+
+      <tr>
+        <td>住所</td>
+        <td><%= @reservation.customer.address %></td>
+      </tr>
+
+    </tbody>
+   </table>
+
+
+
+      <label>プラン名</label>
+      <div><%= @reservation.plan.name %><div>
+
+      <label>合計料金(税込)</label>
+      <div><%= (@reservation.plan.tax_excluded_fee * 1.1) * (@reservation.count) * (@reservation.room_number) * (@reservation.nights_number) .floor %>円</div>
+
+      <%= form_with model:  [@plan, @reservation], url:plan_reservations_path(@plan), local:true do |f| %>
+         <%= f.hidden_field :customer_id, value: current_customer.id %>
+         <%= f.hidden_field :room_id, value: @reservation.room.id %>
+         <%= f.hidden_field :plan_id, value: @reservation.plan.id %>
+         <%= f.hidden_field :lodgment_date, value: @reservation.lodgment_date %>
+         <%= f.hidden_field :nights_number, value: @reservation.nights_number %>
+         <%= f.hidden_field :count, value: @reservation.count %>
+         <%= f.hidden_field :room_number, value: @reservation.room_number %>
+         <%= f.hidden_field :note, value: @reservation.note %>
+         <%= f.hidden_field :including_tax_total_amount, value: (@reservation.plan.tax_excluded_fee * 1.1) * (@reservation.count) * (@reservation.room_number) * (@reservation.nights_number) .floor %>
+         <%= f.submit '▶予約を確定する' %>
+      <% end %>

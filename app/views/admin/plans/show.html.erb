@@ -1,0 +1,38 @@
+<h2>プラン詳細</h2>
+
+  <div>
+   <%= image_tag @plan.image, size: "200x200" %>
+  </div>
+
+      <table>
+
+     <tbody>
+      <tr>
+        <td>プラン名</td>
+        <td><%= @plan.name %></td>
+      </tr>
+
+      <tr>
+        <td>税込金額(税抜)</td>
+        <td><%= (@plan.tax_excluded_fee * 1.1).floor %>(<%= @plan.tax_excluded_fee %>)円</td>
+      </tr>
+
+      <tr>
+        <td>素泊まり/食事付き</td>
+        <td><%= @plan.meal_i18n %></td>
+      </tr>
+
+      <tr>
+        <td>プラン説明</td>
+        <td><%= @plan.description %></td>
+      </tr>
+       <td>販売ステータス</td>
+       <td><% if @plan.sales_status == "on_sale" %>
+        <span class="text-success">販売中</span>
+        <% else %>
+        <span class="text-secondary">販売停止中</span>
+        <% end %></td>
+    </tbody>
+   </table>
+
+      <%= link_to "▶編集する",edit_admin_plan_path(@plan.id) %>

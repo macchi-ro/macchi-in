@@ -1,0 +1,52 @@
+<h2>マイページ</h2>
+
+<table class="font-weight-bold mt-3 ml-5 small">
+  <thead>
+    <tr>
+      <th></th>
+      <th style="width: 400px"></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>メール</td>
+      <td><%= @customer.email %></td>
+    </tr>
+
+    <tr>
+      <td>氏名</td>
+      <td><%= @customer.last_name %>　<%= @customer.first_name %></td>
+    </tr>
+
+    <tr>
+      <td>氏名(カナ)</td>
+      <td><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td>
+    </tr>
+
+    <tr>
+      <td>郵便番号</td>
+      <td><%= @customer.address_number %></td>
+    </tr>
+
+    <tr>
+      <td>住所</td>
+      <td><%= @customer.address %></td>
+    </tr>
+
+    <tr>
+      <td>性別</td>
+      <td><%= @customer.gender %></td>
+    </tr>
+
+    <tr>
+      <td>年代</td>
+      <td><%= @customer.age %>代</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<%= link_to '編集する', edit_customer_registration_path %>
+
+  <%= link_to '退会する', withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" } %>

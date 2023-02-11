@@ -1,0 +1,23 @@
+<div>プラン一覧 (全<%= @plans.count %>件) </div>
+
+    <% @plans.each do |plan| %>
+
+　　  <div id="favorite_buttons_<%= plan.id %>">
+　　　 <%= render "public/favorites/favorite", plan: plan %>
+　　　</div>
+        <div>
+          <%= link_to plan_path(plan.id) do %>
+            <%= image_tag plan.image, size: "150x150"%><br>
+          <% end %>
+        </div>
+
+        <div>
+          <%= plan.name %>
+        </div>
+
+        <div>
+        <%= (plan.tax_excluded_fee * 1.1).floor %>円(税込)
+        </div>
+    <% end %>
+
+    <%= paginate @plans %>

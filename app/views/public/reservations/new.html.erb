@@ -1,0 +1,26 @@
+<h2>予約申し込み入力</h2>
+
+<%= form_with model: @reservation, url:plan_reservations_check_path(@plan), local:true do |f| %>
+
+      <label class="control-label" for="">宿泊日</label>
+      <div><%= f.date_field :lodgment_date %></div>
+
+      <label>泊数</label>
+      <div><%= f.select :nights_number, [[1], [2], [3], [4], [5]], include_blank: "泊数選択" %>泊<div>
+
+      <label>人数</label>※１室あたりの人数
+      <div><%= f.select :count, [[1], [2]], include_blank: "人数選択" %>人<div>
+
+      <label>室数</label>
+      <div><%= f.select :room_number, [[1], [2], [3], [4], [5]], include_blank: "室数選択" %>室<div>
+
+      <label>部屋タイプ</label>
+      <div><%= f.select :room_id, options_from_collection_for_select(Room.all, :id, :name), {}, {class: "form-control"} %></div>
+
+      <label>備考/要望</label>
+      <div><%= f.text_area :note %></div>
+      <%= f.hidden_field :plan_id, value: @plan.id %>
+      <%= f.hidden_field :customer_id, value: current_customer.id %>
+
+       <%= f.submit '確認画面へ進む' %>
+      <% end %>

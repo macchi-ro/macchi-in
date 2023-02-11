@@ -1,0 +1,29 @@
+<div class="d-inline ml-5"></div><h6 class="d-inline-block ml-5 px-3 mb-4 mt-4 font-weight-bold" style="background-color: ghostwhite">予約一覧</h6></div>
+<table class="table table-bordered mx-auto" style="width: 90%">
+  <thead style="background-color: ghostwhite">
+    <tr>
+      <th>宿泊日</th>
+      <th>泊数</th>
+      <th>人数</th>
+      <th>室数</th>
+      <th>プラン名</th>
+      <th>部屋タイプ</th>
+      <th>合計料金(税込)</th>
+      <th>備考</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reservations.each do |reservation| %>
+    <tr>
+        <td><%= reservation.lodgment_date.strftime('%Y/%m/%d') %></td>
+        <td><%= reservation.nights_number %>泊</td>
+        <td><%= reservation.count %>人</td>
+        <td><%= reservation.room_number %>室</td>
+        <td><%= reservation.plan.name %></td>
+        <td><%= reservation.room.name %></td>
+        <td><%= reservation.including_tax_total_amount %>円</td>
+        <td><%= reservation.note %></td>
+    <% end %>
+    </tr>
+  </tbody>
+</table>
