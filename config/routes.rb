@@ -8,6 +8,9 @@ scope module: :public do
     resource :favorites, only: [:create, :destroy]
     resources :reservations, only: [:new, :create]
     post 'reservations/check' => 'reservations#check'
+     collection do
+      get 'search'
+     end
   end
   resources :reservations, only: [:index]
   patch '/customers/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
@@ -28,7 +31,11 @@ end
        get 'search'
       end
     end
-    resources :reservations, only: [:show, :index, :edit, :update, :destroy]
+    resources :reservations, only: [:show, :index, :edit, :update, :destroy] do
+      collection do
+       get 'search'
+      end
+    end
     resources :comments, only: [:index, :edit, :update, :destroy]
   end
 

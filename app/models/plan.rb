@@ -11,4 +11,12 @@ class Plan < ApplicationRecord
     favorites.exists?(customer_id: customer.id)
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "description", "id", "meal", "name", "sales_status", "tax_excluded_fee", "updated_at"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["favorites", "image_attachment", "image_blob", "reservations"]
+  end
+
 end

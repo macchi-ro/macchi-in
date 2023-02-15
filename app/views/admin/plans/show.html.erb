@@ -1,14 +1,18 @@
-<h2>プラン詳細</h2>
-
-  <div>
-   <%= image_tag @plan.image, size: "200x200" %>
+<section class="container">
+  <h4 class="display-6 m-4 shadow-sm h-auto w-25">プラン詳細</h4>
+  <div class="form-group mb-12 w-50 mx-auto">
+    <% if @plan.image.attached? %>
+     <%= image_tag @plan.image, size: "400x400" %>
+    <% else %>
+     <%= image_tag 'no_image.jpg', size: "400x400" %>
+    <% end %>
   </div>
 
-      <table>
+      <table class="table">
 
      <tbody>
       <tr>
-        <td>プラン名</td>
+        <td style="width: 271px">プラン名</td>
         <td><%= @plan.name %></td>
       </tr>
 
@@ -24,7 +28,7 @@
 
       <tr>
         <td>プラン説明</td>
-        <td><%= @plan.description %></td>
+        <td><%= simple_format(@plan.description) %></td>
       </tr>
        <td>販売ステータス</td>
        <td><% if @plan.sales_status == "on_sale" %>
@@ -34,5 +38,8 @@
         <% end %></td>
     </tbody>
    </table>
-
-      <%= link_to "▶編集する",edit_admin_plan_path(@plan.id) %>
+    <div class="form-group mb-12 w-25 mx-auto">
+      <%= link_to "▶編集する",edit_admin_plan_path(@plan.id), class:'btn btn-success mx-auto px-5 py-3' %>
+    </div>
+   </div>
+  </section>

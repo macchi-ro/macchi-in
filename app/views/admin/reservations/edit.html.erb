@@ -1,29 +1,40 @@
-<h2>予約編集</h2>
+<h4 class="display-6 m-4 shadow-sm h-auto w-25">予約編集</h4>
 
   <%= form_with model: @reservation, url: admin_reservation_path(@reservation.id), method: :patch, data: {confirm: "更新しますか？"} do |f| %>
+  <div class="container m-0">
+   <div class="row-4">
+    <div class="form-group mb-12 w-25 my-0">
+     <label for="exampleFormControlInput1" class="form-label w-50 ms-1 mt-4">宿泊日</label>
+      <div class="w-70 mb-4 ms-4 em-4 mt-0"><%= f.date_field :lodgment_date, class: "form-control" %></div>
+     </div>
 
-        <label class="control-label" for="">宿泊日</label>
-      <div><%= f.date_field :lodgment_date %></div>
-
-      <label>泊数</label>
-      <div><%= f.select :nights_number, [[1], [2], [3], [4], [5]], include_blank: "泊数選択" %>泊<div>
+    <div class="form-group mb-12 w-50 my-0">
+     <label for="exampleFormControlInput1" class="form-label w-25 ms-1 mt-4">泊数</label>
+       <div class="font-weight-bold d-inline-block ml-1 mr-1 mt-3">
+         <%= f.select :nights_number, [[1], [2], [3], [4], [5]], include_blank: "泊数選択", class: "form-control" %>泊
+       </div>
+     </div>
 
       <label>人数</label>※１室あたりの人数
-      <div><%= f.select :count, [[1], [2]], include_blank: "人数選択" %>人<div>
+      <div><%= f.select :count, [[1], [2]], include_blank: "人数選択" %>人</div>
 
       <label>室数</label>
-      <div><%= f.select :room_number, [[1], [2], [3], [4], [5]], include_blank: "室数選択" %>室<div>
+      <div><%= f.select :room_number, [[1], [2], [3], [4], [5]], include_blank: "室数選択" %>室</div>
 
-      <label>部屋タイプ</label>
-      <div><%= f.select :room_id, options_from_collection_for_select(Room.all, :id, :name), {}, {class: "form-control"} %></div>
+    <div class="form-group mb-12 w-25 my-0">
+     <label for="exampleFormControlInput1" class="form-label w-50 ms-1 mt-4">部屋タイプ</label>
+        <div class="w-70 mb-4 ms-4 em-4 mt-0"><%= f.select :room_id, options_from_collection_for_select(Room.all, :id, :name), {}, {class: "form-control"} %></div>
+     </div>
+    </div>
 
-      <label>備考/要望</label>
-      <div><%= f.text_area :note %></div>
+    <div class="form-group mb-12 w-25 my-0">
+     <label for="exampleFormControlInput1" class="form-label w-50 ms-1 mt-4">備考/要望</label>
+        <div class="w-70 mb-4 ms-4 em-4 mt-0"><%= f.text_area :note, class: "form-control" %></div>
 
-       <%= f.submit '▶編集確定' %>
-
+       <%= f.submit '▶編集確定', class:'btn btn-sm btn-success' %>
+        <%= form_with model: @reservation, url: admin_reservation_path(@reservation.id), method: :delete, data: {confirm: "本当に予約を削除しますか？"} do |f| %>
+         <%= f.submit '▷予約削除', class:'btn btn-sm btn-danger px-2' %>
+        <% end %>
        <% end %>
-
-  <%= form_with model: @reservation, url: admin_reservation_path(@reservation.id), method: :delete, data: {confirm: "本当に予約を削除しますか？"} do |f| %>
-       <%= f.submit '▶予約削除' %>
-       <% end %>
+    </div>
+  </div>

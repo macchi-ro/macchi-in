@@ -1,36 +1,89 @@
-<h2>施設概要</h2>
 
-※レイアウト時に挿入予定
+<body>
+<section class="container mx-auto ">
+  <div class="row mx-auto">
+ 　  <div class="col-12 mx-auto">
+     <h4 class="display-6 m-4 shadow-sm mx-auto w-100">施設概要</h4>
+        <table class="table table-borderless">
+         <tbody>
+          <tr>
+           <th style="width: 271px">開業年</th>
+           <td>1995年5月</td>
+          </tr>
+          <tr>
+           <th style="width: 271px">チェックイン/チェックアウト</th>
+            <td>
+            15:00  /  10:00<br>
+            ※プランにより異なる場合が御座います。
+            </td>
+          </tr>
+          <tr>
+           <th style="width: 271px">お部屋</th>
+            <td>
+            客室総数  42  室<br>
+            ・禁煙ダブルルーム20室<br>
+            ・禁煙ツインルーム12室<br>
+            ・禁煙フォースルーム8室<br>
+            ・禁煙スイートルーム2室<br>
+            </td>
+          </tr>
+          <tr>
+           <th style="width: 271px">特徴</th>
+            <td>
+            天然温泉大浴場と健康食バイキングが自慢のホテル。<br>
+            札幌駅から徒歩約2分。
+            </td>
+          </tr>
+          <tr>
+           <th style="width: 271px">駐車場</th>
+            <td>
+            	駐車料金は1泊1台 1200円でございます。<br>
+             駐車場は完全予約制でのご案内となり。<br>
+             ※当館敷地内の平地駐車場【40台】<br>
+            </td>
+          </tr>
+          </tbody>
+         </table>
+    </div>
+   </div>
 
+  <div class="row mx-auto">
+ 　  <div class="col-12 mx-auto">
 <!--コメント新規投稿-->
-<h2>お客様の声</h2>
+     <h4 class="display-6 m-4 shadow-sm mx-auto w-100">お客様の声</h4>
+     <%= form_with model: Comment, url:comments_path, local:true do |f| %>
+          <label>表題</label>
+          <div><%= f.text_field :title, value: @title, class: "form-control w-50" %></div>
 
-  <%= form_with model: Comment, url:comments_path, local:true do |f| %>
-    <label>表題</label>
-    <div><%= f.text_field :title, value: @title %></div>
+          <label>内容</label>
+          <div><%= f.text_area :content, value: @content, class: "form-control w-50" %></div>
+               <%= f.hidden_field :customer_id, :value => @customer.id %>
+          <div><%= f.submit '▶投稿する', class:'btn btn-primary m-2' %></div>
+          <% end %>
+    </div>
+   </div>
 
-    <label>内容</label>
-    <div><%= f.text_area :content, value: @content %></div>
-         <%= f.hidden_field :customer_id, :value => @customer.id %>
-    <div><%= f.submit '▶投稿する' %></div>
-
-    <% end %>
+  <div class="row mx-auto">
+ 　  <div class="col-12 mx-auto">
 <!--コメント一覧-->
-<h2>皆様からの声</h2>
+     <h4 class="display-6 m-4 shadow-sm mx-auto w-100">皆様からの声</h4>
+        <table class="table table-striped table-hover">
+         <thead>
+          <tr>
+           <th style="width: 300px">表題</th>
+           <th>内容</th>
+          </tr>
+       </thead>
+        <tbody>
+         <tr>
+          <% @comments.each do |comment| %>
+          <td><%= comment.title %></td>
+          <td><%= comment.content %></td>
+         </tr>
+         <% end %>
+          </tbody>
+         </table>
 
-   <table>
-    <thead>
-     <tr>
-      <th>表題</th>
-      <th>内容</th>
-     </tr>
-  </thead>
-   <tbody>
-    <tr>
-     <% @comments.each do |comment| %>
-     <td><%= comment.title %></td>
-     <td><%= comment.content %></td>
-    </tr>
-    <% end %>
-     </tbody>
-    </table>
+     </div>
+  </section>
+ </body>

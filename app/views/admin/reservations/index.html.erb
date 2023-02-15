@@ -1,14 +1,27 @@
-<div class="d-inline ml-5"></div><h6 class="d-inline-block ml-5 px-3 mb-4 mt-4 font-weight-bold" style="background-color: ghostwhite">予約一覧</h6></div>
+<h4 class="display-6 m-4 shadow-sm h-auto w-25">予約一覧 (全<%= @reservations.count %>件) </h4>
+
+<!--検索フォーム-->
+<%= search_form_for @q,url: admin_reservations_path do |f| %>
+<div class="input-group w-25 m-4">
+    <%= f.search_field :lodgment_date_cont, class:"form-control input-group-prepend", placeholder:"宿泊日を入力"  %>
+  <span class="input-group-btn input-group-append">
+  <submit><%= f.submit "🔍検索",class:"btn btn-primary" %></submit>
+<% end %>
+  </span>
+</div>
+
+<!--検索結果-->
+<% if @reservations.present? %>
 <table class="table table-bordered mx-auto" style="width: 90%">
   <thead style="background-color: ghostwhite">
     <tr>
       <th>予約ID</th>
-      <th>宿泊日</th>
-      <th>プラン名</th>
-      <th>合計金額</th>
-      <th>予約者</th>
-      <th>性別</th>
-      <th>年代</th>
+      <th><%= sort_link(@q, :lodgment_date, "宿泊日") %></th>
+      <th><%= sort_link(@q, :name, "プラン名") %></th>
+      <th><%= sort_link(@q, :including_tax_total_amount, "合計金額(税込)") %></th>
+      <th><%= sort_link(@q, :last_name, "予約者") %></th>
+      <th><%= sort_link(@q, :gender, "性別") %></th>
+      <th><%= sort_link(@q, :age, "年代") %></th>
     </tr>
   </thead>
   <tbody>
@@ -33,3 +46,7 @@
     </tr>
   </tbody>
 </table>
+<% else %>
+  <!--検索がヒットしなかった場合-->
+  <p>検索結果はありません</p>
+<% end %>

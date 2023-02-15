@@ -1,29 +1,34 @@
-<div>お気に入りプラン一覧 (全<%= @favorite_plans.count %>件) </div>
+<body>
+<h4 class="display-6 m-4 shadow-sm h-auto w-25">お気に入りプラン一覧 (全<%= @favorite_plans.count %>件) </h4>
 
+<section class="container ">
+ <div class="d-flex flex-wrap">
      <% @favorite_plans.each do |plan|%>
-    <% if plan.favorited_by?(current_customer) %>
-      <!--# 一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
-      <%= link_to plan_favorites_path(plan.id), method: :delete do %>
-        <span style="color:red;">❤︎</span>
-      <% end %>
-      <% else %>
-      <!--# 一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
-      <%= link_to plan_favorites_path(plan.id), method: :post do %>
-        <span>❤︎</span>
-      <% end %>
-    <% end %>
-        <div>
+       <div class="card my-5 mx-5" style="width: 16rem;">
           <%= link_to plan_path(plan.id) do %>
-            <%= image_tag plan.image, size: "150x150"%><br>
+            <%= image_tag plan.image, size: "200x200",class:"card-img-top" %><br>
           <% end %>
-        </div>
-
-        <div>
+        <div class="card-body">
+          <p class="card-title">
+           <div id="favorite_buttons_<%= plan.id %>">
+            <% if plan.favorited_by?(current_customer) %>
+              <%= link_to plan_favorites_path(plan.id), method: :delete, remote: true do %>
+                <h1 style="color:red;">❤︎</h1>
+              <% end %>
+              <% else %>
+              <%= link_to plan_favorites_path(plan.id), method: :post, remote: true do %>
+                <h1>❤︎</h1>
+              <% end %>
+            <% end %>
+           </div>
           <%= plan.name %>
-        </div>
-
-        <div>
+          </p>
+        <p class="card-text"></p>
         <%= (plan.tax_excluded_fee * 1.1).floor %>円(税込)
-        </div>
-    <% end %>
-
+        </p>
+       </div>
+      </div>
+        <% end %>
+     </div>
+  </section>
+</body>

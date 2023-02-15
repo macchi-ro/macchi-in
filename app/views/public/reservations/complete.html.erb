@@ -1,9 +1,18 @@
-<h1>～　予約の申込を完了しました　～</h1><br>
-<h5>申込内容をご登録のメールアドレスへ送信いたしました</h5>
+<section class="container mx-auto">
+    <div class=" w-50 mr-4 mx-auto">
+     <%= image_tag "complete.png", width: "100%", height: "700px" %>
+    </div>
 
-<h5>注意事項</h5><br>
-<h5>・宿泊日前々日よりキャンセル料が発生致します。</h5><br>
-<h5>・内容変更・キャンセルの際は施設までご連絡をお願いいたします。</h5><br>
+    <div class="w-50 mx-auto">
+      <h4>注意事項</h4><br>
+      <h5>・宿泊日前々日よりキャンセル料が発生致します。</h5><br>
+      <h5>・キャンセルの際は施設までご連絡をお願いいたします。</h5><br>
+    </div>
 
-      <%= link_to "▶予約一覧", reservations_path %>
-      <%= link_to "▶TOPページに戻る", root_path %>
+    <div class="form-group mb-12 w-25 m-5 mx-auto">
+      <%= link_to "▶予約一覧", reservations_path, class:'btn btn-primary mx-auto px-4 py-2 m-2' %>
+      <%= link_to "▶TOPページに戻る", root_path, class:'btn btn-primary mx-auto px-4 py-2 m-2' %>
+    </div>
+
+   </div>
+</section>

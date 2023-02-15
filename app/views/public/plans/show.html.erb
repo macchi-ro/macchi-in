@@ -1,18 +1,19 @@
-<h2>プラン詳細</h2>
+<section class="container">
+  <h4 class="display-6 m-4 shadow-sm h-auto w-25">プラン詳細</h4>
    <% if @plan.sales_status %>
-     <span class="text-success">販売中</span>
+     <h5 class="text-success m-4">販売中</h5>
      <% else @plan.sales_status %>
-     <span class="text-secondary">販売停止中</span>
+     <h5 class="text-secondary m-4">販売停止中</h5>
      <% end %>
-  <div>
-   <%= image_tag @plan.image, size: "200x200" %>
+  <div class="form-group mb-12 w-50 mx-auto">
+   <%= image_tag @plan.image, size: "400x400",class:"m-5" %>
   </div>
 
-      <table>
+      <table class="table">
 
      <tbody>
       <tr>
-        <td>プラン名</td>
+        <td style="width: 271px">プラン名</td>
         <td><%= @plan.name %></td>
       </tr>
 
@@ -28,7 +29,7 @@
 
       <tr>
         <td>プラン説明</td>
-        <td><%= @plan.description %></td>
+        <td><%= simple_format(@plan.description) %></td>
       </tr>
     </tbody>
    </table>
@@ -36,4 +37,8 @@
       <%= form_with model: @reservation, url: plan_reservations_path(@plan), local: :true do |f| %>
       <%= f.hidden_field :plan_id, :value => @plan.id %>
       <% end %>
-      <%= link_to "▶予約する", new_plan_reservation_path(@plan) %>
+    <div class="form-group mb-12 w-25 mx-auto">
+      <%= link_to "▶予約する", new_plan_reservation_path(@plan), class:'btn btn-primary mx-auto px-5 py-3' %>
+    </div>
+   </div>
+  </section>

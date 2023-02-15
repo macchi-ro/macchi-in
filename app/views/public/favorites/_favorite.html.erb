@@ -1,11 +1,11 @@
-     <% if plan.favorited_by?(current_customer) %>
-      <!--# 一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
-       <%= link_to plan_favorites_path(plan.id), method: :delete, remote: true do %>
-        <span style="color:red;">❤︎</span>
-      <% end %>
-    <% else %>
-    <!--# 一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
-      <%= link_to plan_favorites_path(plan.id), method: :post, remote: true do %>
-       <span>❤︎</span>
-      <% end %>
-    <% end %>
+<% if plan.favorited_by?(current_customer) %>
+  <!--# 一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
+  <%= link_to plan_favorites_path(plan.id), method: :delete, remote: true do %>
+   <h1 style="color:red;">❤︎</h1>
+  <% end %>
+<% else %>
+<!--# 一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
+  <%= link_to plan_favorites_path(plan.id), method: :post, remote: true do %>
+   <h1>❤︎</h1>
+  <% end %>
+<% end %>

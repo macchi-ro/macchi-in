@@ -1,23 +1,54 @@
-<div>プラン一覧 (全<%= @plans.count %>件) </div>
+<body>
+<h4 class="display-6 m-4 shadow-sm h-auto w-25">プラン一覧 (全<%= @plans.count %>件) </h4>
 
-    <% @plans.each do |plan| %>
+<!--検索フォーム-->
+<%= search_form_for @q,url: plans_path do |f| %>
+<div class="input-group w-50 m-4">
+    <%= f.search_field :name_cont, class:"form-control input-group-prepend mx-2", placeholder:"プラン名" %></br>
 
-　　  <div id="favorite_buttons_<%= plan.id %>">
-　　　 <%= render "public/favorites/favorite", plan: plan %>
-　　　</div>
-        <div>
+    <%= f.number_field :tax_excluded_fee_gteq, class:"form-control input-group-prepend mx-2", placeholder:"下限料金" %><div class="mt-2">円以上〜</div>
+    <%= f.number_field :tax_excluded_fee_lt, class:"form-control input-group-prepend mx-2", placeholder:"上限料金" %><div class="mt-2">円未満</div><br>
+    <span class="input-group-btn input-group-append">
+    <submit><%= f.submit "🔍検索",class:"btn btn-primary mx-3 px-3" %></submit>
+  <% end %>
+  </span>
+</div>
+<!--検索結果-->
+<section class="container ">
+ <div class="d-flex flex-wrap">
+  <% if @plans.present? %>
+  <% @plans.each do |plan| %>
+       <div class="card my-5 mx-5" style="width: 16rem;">
+        <% if plan.image.attached? %>
           <%= link_to plan_path(plan.id) do %>
-            <%= image_tag plan.image, size: "150x150"%><br>
+            <%= image_tag plan.image, size: "200x200",class:"card-img-top" %><br>
           <% end %>
+        <% else %>
+          <%= link_to plan_path(plan.id) do %>
+            <%= image_tag 'no_image.jpg', size: "200x200",class:"card-img-top" %><br>
+          <% end %>
+        <% end %>
+        <div class="card-body">
+          <p class="card-title">
+            <div id="favorite_buttons_<%= plan.id %>">
+             <%= render "public/favorites/favorite", plan: plan %>
+            </div>
+            <%= plan.name %>
+          </p>
+          <p class="card-text">
+           <%= (plan.tax_excluded_fee * 1.1).floor %>円(税込)
+          </p>
+        </div>
         </div>
 
-        <div>
-          <%= plan.name %>
-        </div>
-
-        <div>
-        <%= (plan.tax_excluded_fee * 1.1).floor %>円(税込)
-        </div>
-    <% end %>
-
-    <%= paginate @plans %>
+      <% end %>
+     <% else %>
+          <!--検索がヒットしなかった場合-->
+          <p>検索結果はありません</p>
+        <% end %>
+        <%= paginate @plans %>
+       </div>
+      </div>
+     </div>
+  </section>
+</body>

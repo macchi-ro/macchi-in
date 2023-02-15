@@ -1,19 +1,19 @@
-<h2>投稿一覧</h2>
+<h4 class="display-6 m-4 shadow-sm w-25 ml-5">投稿一覧</h4>
 
-   <table>
-    <thead>
+   <table class="table mx-auto" style="width: 70%">
+    <thead class="thead-light">
      <tr>
-      <th>会員ID</th>
-      <th>会員名</th>
-      <th>表題</th>
-      <th>内容</th>
-      <th>投稿日</th>
+      <th scope="col">会員ID</th>
+      <th scope="col">会員名</th>
+      <th scope="col">表題</th>
+      <th scope="col">内容</th>
+      <th scope="col">投稿日</th>
       <th></th>
       <th></th>
      </tr>
   </thead>
    <tbody>
-    <tr>
+    <tr scope="row">
      <% @comments.each do |comment| %>
      <td><%= comment.customer.id %></td>
      <td>
@@ -24,9 +24,9 @@
      <td><%= comment.title %></td>
      <td><%= comment.content %></td>
      <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
-     <td><%= link_to "▶編集", edit_admin_comment_path(comment.id) %></td>
+     <td><%= link_to "▶編集", edit_admin_comment_path(comment.id), class:'btn btn-sm btn-success' %></td>
        <%= form_with model: Comment, url: admin_comment_path(comment.id), method: :delete do |f| %>
-     <td><%= f.submit '▶削除' %></td>
+     <td><%= f.submit '▶削除', class:'btn btn-sm btn-danger px-2', "data-confirm" => "本当に削除しますか？" %></td>
        <% end %>
     </tr>
     <% end %>

@@ -1,6 +1,6 @@
-<h2>会員詳細</h2>
+<h4 class="display-6 m-4 shadow-sm h-auto w-25">会員詳細</h4>
 
-<table class="font-weight-bold mt-3 ml-5 small">
+<table class="table table-striped m-5" style="width: 50%">
   <thead>
     <tr>
       <th></th>
@@ -10,56 +10,57 @@
   <tbody>
 
     <tr>
-      <td>会員ID</td>
+      <td class="pl-2 pb-2 w-25">会員ID</td>
       <td><%= @customer.id %></td>
     </tr>
 
     <tr>
-      <td>メール</td>
+      <td class="pl-2 pb-2 w-25">メール</td>
       <td><%= @customer.email %></td>
     </tr>
 
     <tr>
-      <td>氏名</td>
+      <td class="pl-2 pb-2 w-25">氏名</td>
       <td><%= @customer.last_name %>　<%= @customer.first_name %></td>
     </tr>
 
     <tr>
-      <td>氏名(カナ)</td>
+      <td class="pl-2 pb-2 w-25">氏名(カナ)</td>
       <td><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td>
     </tr>
 
     <tr>
-      <td>郵便番号</td>
+      <td class="pl-2 pb-2 w-25">郵便番号</td>
       <td><%= @customer.address_number %></td>
     </tr>
 
     <tr>
-      <td>住所</td>
+      <td class="pl-2 pb-2 w-25">住所</td>
       <td><%= @customer.address %></td>
     </tr>
 
     <tr>
-      <td>性別</td>
+      <td class="pl-2 pb-2 w-25">性別</td>
       <td><%= @customer.gender %></td>
     </tr>
 
-    <tr>
+    <tr class="pl-2 pb-2 w-25">
       <td>年代</td>
       <td><%= @customer.age %>代</td>
     </tr>
 
-    <tr>
+    <tr class="pl-2 pb-2 w-25">
       <td>ステータス</td>
       <td>
         <% if @customer.unsubscribe_status == true %>
-            <div>退会</div>
+            <div class="text-danger">退会</div>
         <% else %>
-            <div>有効</div>
+            <div class="text-success">有効</div>
         <% end %>
       </td>
     </tr>
   </tbody>
 </table>
-
-<%= link_to '▶会員一覧へ戻る', admin_customers_path %>
+<div class="m-5">
+ <%= link_to '▶会員一覧へ戻る', admin_customers_path, class:'btn btn-primary' %>
+</div>

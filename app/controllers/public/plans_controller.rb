@@ -1,7 +1,15 @@
 class Public::PlansController < ApplicationController
 
+  def search
+    # params[:q]のqには検索フォームに入力した値が入る
+    @q = Plan.ransack(params[:q])
+    @plans = @q.result(distinct: true)
+  end
+
   def index
-   @plans = Plan.all.page(params[:page]).per(8)
+    @q = Plan.ransack(params[:q])
+    @ransack_plans = @q.result(distinct: true)
+    @plans = @q.result(distinct: true).page(params[:page]).per(8)
   end
 
   def show

@@ -1,7 +1,15 @@
 class Admin::ReservationsController < ApplicationController
 
+  def search
+    # params[:q]のqには検索フォームに入力した値が入る
+    @q = Reservation.ransack(params[:q])
+    @reservations = @q.result(distinct: true)
+  end
+
   def index
-    @reservations = Reservation.all
+    @q = Reservation.ransack(params[:q])
+    @ransack_reservations = @q.result(distinct: true)
+    @reservations = @q.result(distinct: true)
   end
 
   def show

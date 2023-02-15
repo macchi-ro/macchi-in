@@ -3,8 +3,11 @@ class Public::CommentsController < ApplicationController
   def create
   @comment = Comment.new(comment_params)
   @customer = current_customer
-  @comment.save
-  redirect_to comments_path
+    if @comment.save
+      redirect_to comments_path
+    else
+      render :index
+    end
   end
 
   def index

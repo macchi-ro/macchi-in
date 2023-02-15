@@ -11,5 +11,4 @@ class Public::FavoritesController < ApplicationController
    @plan_favorite = Favorite.find_by(customer_id: current_customer.id, plan_id: params[:plan_id])
    @plan_favorite.destroy
   end
-
 end

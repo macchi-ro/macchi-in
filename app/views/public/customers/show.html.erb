@@ -1,6 +1,6 @@
-<h2>マイページ</h2>
+<h4 class="display-6 m-4 shadow-sm mx-auto w-50">マイページ</h4>
 
-<table class="font-weight-bold mt-3 ml-5 small">
+<table class="table table-striped mx-auto" style="width: 50%">
   <thead>
     <tr>
       <th></th>
@@ -10,43 +10,45 @@
   <tbody>
 
     <tr>
-      <td>メール</td>
+      <td class="pl-2 pb-2 w-25">メール</td>
       <td><%= @customer.email %></td>
     </tr>
 
     <tr>
-      <td>氏名</td>
+      <td class="pl-2 pb-2 w-25">氏名</td>
       <td><%= @customer.last_name %>　<%= @customer.first_name %></td>
     </tr>
 
     <tr>
-      <td>氏名(カナ)</td>
+      <td class="pl-2 pb-2 w-25">氏名(カナ)</td>
       <td><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td>
     </tr>
 
     <tr>
-      <td>郵便番号</td>
+      <td class="pl-2 pb-2 w-25">郵便番号</td>
       <td><%= @customer.address_number %></td>
     </tr>
 
     <tr>
-      <td>住所</td>
+      <td class="pl-2 pb-2 w-25">住所</td>
       <td><%= @customer.address %></td>
     </tr>
 
     <tr>
-      <td>性別</td>
+      <td class="pl-2 pb-2 w-25">性別</td>
       <td><%= @customer.gender %></td>
     </tr>
 
     <tr>
-      <td>年代</td>
+      <td class="pl-2 pb-2 w-25">年代</td>
       <td><%= @customer.age %>代</td>
     </tr>
 
   </tbody>
 </table>
 
-<%= link_to '編集する', edit_customer_registration_path %>
+<div class="mx-auto w-50">
+ <%= link_to '編集する', edit_customer_registration_path, class:'btn btn-sm btn-success px-4' %>
+ <%= link_to '退会する', withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class:'btn btn-sm btn-danger px-4' %>
+</div>
 
-  <%= link_to '退会する', withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" } %>
