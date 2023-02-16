@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # 会員側のルーティング設定
 scope module: :public do
   root to: "homes#top"
+  post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
   get 'reservations/complete' => 'reservations#complete'
   resources :plans, only: [:show, :index] do
     resource :favorites, only: [:create, :destroy]
@@ -26,7 +27,7 @@ end
   namespace :admin do
     resources :plans, only: [:index, :new, :create, :show, :edit, :update]
     resources :rooms, only: [:index, :create, :edit, :update]
-    resources :customers, only: [:index, :show] do
+    resources :customers, only: [:index, :show, :edit, :update] do
       collection do
        get 'search'
       end

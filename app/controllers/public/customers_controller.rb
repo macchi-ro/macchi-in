@@ -10,18 +10,13 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = current_customer
-    if @customer.update(customer_params)
-     flash[:notice] = "マイページを更新しました！"
+    @customer.update(customer_params)
+    flash[:notice] = "マイページを更新しました！"
      redirect_to customers_path
-    else
-     flash[:alret] = "マイページの更新に失敗しました。"
-     render:edit
-    end
   end
 
   def withdrawal
     @customer = current_customer
-    # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     @customer.update(unsubscribe_status: true)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"

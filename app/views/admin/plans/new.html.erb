@@ -15,14 +15,14 @@
     <div class="form-group mb-12 w-50 my-0">
      <label for="exampleFormControlInput1" class="form-label w-50 ms-1 mt-4">プラン名</label>
      <div class="w-70 mb-4 ms-4 em-4 mt-0">
-      <%= f.text_field :name, class: "form-control"  %>
+      <%= f.text_field :name, placeholder: "プラン名", class: "form-control"  %>
      </div>
     </div>
 
     <div class="form-group mb-12 w-25 my-0">
      <label for="exampleFormControlInput1" class="form-label w-50 ms-1 my-1">販売料金(税抜)</label>
      <div class="w-70 mb-4 ms-4 em-4 mt-0">
-      <%= f.text_field :tax_excluded_fee, class: "form-control d-inline" %><div class="d-inline mt-2">円</div>
+      <%= f.text_field :tax_excluded_fee,  placeholder: "税抜販売料金(円)", class: "form-control d-inline" %>
      </div>
 
      </div>
@@ -42,7 +42,7 @@
     <div class=="form-group mb-12 w-50 my-0">
      <label for="exampleFormControlInput1" class="form-label w-50 ms-1 my-1">プラン説明</label>
      <div class="w-50 mb-4 ms-4 em-4 mt-0">
-       <%= f.text_area :description, class: "form-control" %>
+       <%= f.text_area :description, placeholder: "プラン説明", class: "form-control" %>
       </div>
     </div>
 
