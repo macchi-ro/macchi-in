@@ -10,7 +10,7 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = current_customer
-    @customer.update(customer_params)
+    @customer.update!(customer_params)
     flash[:notice] = "マイページを更新しました！"
      redirect_to customers_path
   end
