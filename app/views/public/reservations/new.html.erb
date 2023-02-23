@@ -2,7 +2,18 @@
 <section class="container mx-auto ">
   <div class="row mx-auto">
     <div class="col-12 mx-auto">
+
  　      <h4 class="display-6 m-4 shadow-sm h-auto w-25">予約申し込み入力 </h4>
+     <!--エラーメッセージ-->
+     <% if @reservation.errors.any? %>
+     <div class="alert alert-danger w-50" role="alert">
+       <ul>
+         <% @reservation.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+         <% end %>
+       </ul>
+     </div>
+     <% end %>
 
 <%= form_with model: @reservation, url:plan_reservations_check_path(@plan), local:true do |f| %>
 

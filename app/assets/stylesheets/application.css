@@ -58,3 +58,7 @@ a{
 body{
   margin: 20px;
 }
+
+.pagination {
+  justify-content: center;
+}

@@ -1,14 +1,19 @@
 class Admin::RoomsController < ApplicationController
-
+  before_action :authenticate_admin!
   def create
    @room = Room.new(room_params)
-   @room.save
-   @name = "default form value"
-   redirect_to admin_rooms_path
+    if @room.save
+       @name = "default form value"
+       redirect_to admin_rooms_path
+    else
+       @rooms = Room.all
+       render :index
+    end
   end
 
   def index
    @rooms = Room.all
+   @room = Room.new
   end
 
   def edit
@@ -24,7 +29,7 @@ class Admin::RoomsController < ApplicationController
 
   private
   def room_params
-    params.require(:room).permit(:name, :image)
+    params.require(:room).permit(:name, :description, :image)
   end
 
 end

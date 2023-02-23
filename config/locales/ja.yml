@@ -1,13 +1,4 @@
   ja:
-    enums:
-      plan:
-        meal:
-          no_meal: "素泊まり"
-          has_meal: "食事付き"
-        sales_status:
-          stopping_sales: "販売停止中"
-          on_sale: "販売中"
-
       date:
         formats:
           default: "%Y/%m/%d"
@@ -33,3 +24,31 @@
         am: "午前"
         pm: "午後"
 
+  ja:
+    activerecord:
+      attributes:
+        plan:
+          image: "プラン画像"
+          name: "プラン名"
+          tax_excluded_fee: "税抜料金"
+          description: "説明文"
+        comment:
+          title: "表題"
+          content: "内容"
+        room:
+          image: "部屋画像"
+          name: "部屋タイプ名"
+          description: "説明"
+        reservation:
+          lodgment_date: "宿泊日"
+          nights_number: "泊数"
+          count: "人数"
+          room_number: "室数"
+    enums:
+      plan:
+        meal:
+          no_meal: "素泊まり"
+          has_meal: "食事付き"
+        sales_status:
+          stopping_sales: "販売停止中"
+          on_sale: "販売中"

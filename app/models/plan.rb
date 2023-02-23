@@ -1,5 +1,18 @@
 class Plan < ApplicationRecord
   has_one_attached :image
+
+  validates :image, presence: true
+
+  validates :name, presence: true, length: { minimum: 1, maximum: 20 }
+
+  validates :tax_excluded_fee, presence: true
+
+  validates :meal, presence: true
+
+  validates :description, presence: true, length: { minimum: 1, maximum: 300 }
+
+  validates :sales_status, presence: true
+
   has_many :reservations, dependent: :destroy
   has_many :favorites, dependent: :destroy
 

@@ -1,0 +1,27 @@
+<section class="container">
+  <h4 class="display-6 m-4 shadow-sm h-auto w-25">部屋タイプ一覧</h4>
+  <% @rooms.each do |room| %>
+  <div class="form-group mb-12 w-50 mx-auto">
+    <% if room.image.attached? %>
+     <%= image_tag room.image, size: "600x400" %>
+    <% else %>
+     <%= image_tag 'no_image.jpg', size: "600x400" %>
+    <% end %>
+  </div>
+
+    <table class="table mb-5">
+     <tbody>
+      <tr>
+        <td style="width: 271px">部屋名</td>
+        <td><%= room.name %></td>
+      </tr>
+
+      <tr>
+        <td>説明</td>
+        <td><%= simple_format(room.description) %></td>
+      </tr>
+    </tbody>
+   </table>
+  <% end %>
+   </div>
+  </section>

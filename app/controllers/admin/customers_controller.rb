@@ -1,5 +1,5 @@
 class Admin::CustomersController < ApplicationController
-
+  before_action :authenticate_admin!
   def search
     # params[:q]のqには検索フォームに入力した値が入る
     @q = Customer.ransack(params[:q])

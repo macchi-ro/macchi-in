@@ -1,14 +1,17 @@
 class Admin::PlansController < ApplicationController
-
+  before_action :authenticate_admin!
   def new
     @plan = Plan.new
   end
 
   def create
    @plan = Plan.new(plan_params)
-   @plan.save
-   flash[:notice] = "プラン新規登録に成功しました！"
-   redirect_to admin_plans_path
+     if @plan.save
+     flash[:notice] = "プラン新規登録に成功しました！"
+     redirect_to admin_plans_path
+     else
+      render :new
+     end
   end
 
   def index
@@ -27,7 +30,7 @@ class Admin::PlansController < ApplicationController
    @plan = Plan.find(params[:id])
    @plan.update(plan_params)
    flash[:notice] = "プラン更新に成功しました！"
-   redirect_to admin_plan_path(@plan.id)
+   redirect_to admin_plan_path(@plan)
   end
 
   private

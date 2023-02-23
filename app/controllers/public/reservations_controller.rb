@@ -1,5 +1,5 @@
 class Public::ReservationsController < ApplicationController
-
+ before_action :authenticate_customer!
  def new
   @plan = Plan.find(params[:plan_id])
   @reservation = Reservation.new
@@ -7,13 +7,21 @@ class Public::ReservationsController < ApplicationController
 
  def create
   @reservation = Reservation.new(reservation_params)
-  @reservation.save
-  redirect_to reservations_complete_path
+    if @reservation.save
+     redirect_to reservations_complete_path
+    else
+     @reservation = Reservation.new
+     @plan = Plan.find(params[:plan_id])
+     render :new
+    end
  end
 
  def check
   @plan = Plan.find(params[:plan_id])
   @reservation = Reservation.new(reservation_params)
+    if @reservation.invalid?
+       render :new
+    end
  end
 
  def index

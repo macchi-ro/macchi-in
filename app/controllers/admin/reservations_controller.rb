@@ -1,5 +1,5 @@
 class Admin::ReservationsController < ApplicationController
-
+  before_action :authenticate_admin!
   def search
     # params[:q]のqには検索フォームに入力した値が入る
     @q = Reservation.ransack(params[:q])

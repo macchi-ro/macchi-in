@@ -15,7 +15,12 @@
     <div class="form-group mb-12 w-25 m-0">
      <label for="exampleFormControlInput1" class="form-label w-50 ms-1 my-3">部屋タイプ名</label>
      <div class="w-70 mb-4 ms-4 em-4 mt-0">
-      <%= f.text_field :name, value: @name, class: "form-control" %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+     </div>
+
+     <label for="exampleFormControlInput1" class="form-label w-50 ms-1 my-1">説明</label>
+     <div class="w-100 mb-4 ms-4 em-4 mt-0">
+      <%= f.text_area :description, autofocus: true, autocomplete: "description", class: "form-control" %>
      </div>
     </div>
 

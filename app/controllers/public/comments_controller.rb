@@ -1,4 +1,5 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_customer!
 
   def create
   @comment = Comment.new(comment_params)
@@ -6,13 +7,20 @@ class Public::CommentsController < ApplicationController
     if @comment.save
       redirect_to comments_path
     else
+      @comments = Comment.all
       render :index
     end
   end
 
   def index
    @comments = Comment.all
-   @Comment = Comment.new
+   @comment = Comment.new
+  end
+
+  def destroy
+   @comment = Comment.find(params[:id])
+   @comment.destroy
+   redirect_to comments_path
   end
 
   private

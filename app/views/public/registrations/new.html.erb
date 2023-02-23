@@ -1,79 +1,86 @@
 
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
 <div class="container">
   <h4 class="display-6 m-4 shadow-sm m-5 w-25">新規会員登録</h4>
-  <div class="row flex-nowrap">
-    <div class="col-md-3 col-sm-2">
-    <%= f.label :"メール",class:"my-3" %><br />
-    <%= f.label :"パスワード",class:"my-3" %><br />
-    <%= f.label :"パスワード(確認)",class:"my-3" %><br />
-    <%= f.label :"氏名",class:"my-3" %><br />
-    <%= f.label :"氏名(カナ)",class:"my-3" %><br />
-    <%= f.label :"郵便番号",class:"my-3" %><br />
-    <%= f.label :"住所",class:"my-3" %><br />
-    <%= f.label :"性別",class:"my-3" %><br />
-    <%= f.label :"年代",class:"my-3" %><br />
-    </div>
+      <% if resource.errors.any? %>
+      <div class="alert alert-danger w-75" role="alert">
+          <ul>
+            <% resource.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+      </div>
+      <% end %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <div class="row flex-nowrap">
+      <div class="col-md-3 col-sm-2">
+      <%= f.label :"メール",class:"my-3" %><br />
+      <%= f.label :"パスワード",class:"my-3" %><br />
+      <%= f.label :"パスワード(確認)",class:"my-3" %><br />
+      <%= f.label :"氏名",class:"my-3" %><br />
+      <%= f.label :"氏名(カナ)",class:"my-3" %><br />
+      <%= f.label :"郵便番号",class:"my-3" %><br />
+      <%= f.label :"住所",class:"my-3" %><br />
+      <%= f.label :"性別",class:"my-3" %><br />
+      <%= f.label :"年代",class:"my-3" %><br />
+      </div>
 
-   <div class="col-md-8 col-sm-9 flex-nowrap mb-3">
-    <div class="form-group my-3 w-50 ">
-     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-    </div>
+      <div class="col-md-8 col-sm-9 flex-nowrap mb-3">
+       <div class="form-group my-3 w-50 ">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+       </div>
 
-    <div class="form-group my-3 w-50 ">
-     <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-    </div>
+       <div class="form-group my-3 w-50 ">
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+       </div>
 
-    <div class="form-group my-3 mt-1 w-50 ">
-     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-    </div>
-  <div class="row my-3">
-     <div class="col">
-      <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control" %>
+       <div class="form-group my-3 mt-1 w-50 ">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+       </div>
+     <div class="row my-3">
+        <div class="col">
+         <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control" %>
+        </div>
+
+       <div class="col">
+         <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control" %>
+       </div>
+      </div>
+
+     <div class="row my-3">
+        <div class="col">
+         <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", class: "form-control" %>
+        </div>
+
+        <div class="col">
+         <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: "form-control" %>
+        </div>
+       </div>
+
+        <div class="form-group my-3 w-25 ">
+         <%= f.text_field :address_number, autofocus: true, autocomplete: "address_number", class: "form-control" %>
+        </div>
+
+        <div class="form-group my-3 w-50 ">
+         <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control" %>
+        </div>
+
+        <div class="form-group my-4 w-50 ">
+          <%= f.radio_button :gender, "男性", class: "checkbox" %>
+          <%= f.label :gender, "男性", class: "radio" %>
+          <%= f.radio_button :gender, "女性", class: "checkbox" %>
+          <%= f.label :gender, "女性", class: "radio" %>
+        </div>
+
+        <div class="form-group my-4 w-50 ">
+          <%= f.select :age, [[20], [30], [40], [50], [60], [70], [80]], include_blank: "年代選択" %>代
+        </div>
+      </div>
      </div>
-
-    <div class="col">
-      <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control" %>
-    </div>
-   </div>
-
-  <div class="row my-3">
-     <div class="col">
-      <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", class: "form-control" %>
-     </div>
-
-    <div class="col">
-     <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: "form-control" %>
-    </div>
-   </div>
-
-    <div class="form-group my-3 w-25 ">
-     <%= f.text_field :address_number, autofocus: true, autocomplete: "address_number", class: "form-control" %>
-    </div>
-
-    <div class="form-group my-3 w-50 ">
-     <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control" %>
-    </div>
-
-    <div class="form-group my-4 w-50 ">
-      <%= f.radio_button :gender, "男性", class: "checkbox" %>
-      <%= f.label :gender, "男性", class: "radio" %>
-      <%= f.radio_button :gender, "女性", class: "checkbox" %>
-      <%= f.label :gender, "女性", class: "radio" %>
-    </div>
-
-    <div class="form-group my-4 w-50 ">
-      <%= f.select :age, [[20], [30], [40], [50], [60], [70], [80]], include_blank: "年代選択" %>代
-    </div>
-  </div>
- </div>
     <div class="actions">
      <%= f.submit "▶新規登録", class:'btn btn-primary m-4' %>
     </div>
-  </div>
    <% end %>
+  </div>
+
 
 

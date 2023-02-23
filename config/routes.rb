@@ -13,6 +13,7 @@ scope module: :public do
       get 'search'
      end
   end
+  resources :rooms, only: [:index]
   resources :reservations, only: [:index]
   patch '/customers/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
   resource :customers, only: [:edit, :update, :show] do
@@ -20,7 +21,7 @@ scope module: :public do
       get :favorites
       end
   end
-  resources :comments, only: [:create, :index]
+  resources :comments, only: [:create, :index, :destroy]
 end
 
   # 管理者側のルーティング設定

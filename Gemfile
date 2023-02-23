@@ -63,7 +63,6 @@ gem 'pry-rails'
 gem 'ransack'
 #gem 'jquery-rails'
 gem 'rails-i18n'
-
 # デプロイ用記述
 gem 'dotenv-rails'
 group :production do

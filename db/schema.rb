@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 2023_02_11_013644) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "name", default: "", null: false
+    t.string "description", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

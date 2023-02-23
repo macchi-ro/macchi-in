@@ -1,5 +1,5 @@
 class Public::PlansController < ApplicationController
-
+  before_action :authenticate_customer!
   def search
     # params[:q]のqには検索フォームに入力した値が入る
     @q = Plan.ransack(params[:q])
@@ -9,7 +9,7 @@ class Public::PlansController < ApplicationController
   def index
     @q = Plan.ransack(params[:q])
     @ransack_plans = @q.result(distinct: true)
-    @plans = @q.result(distinct: true).page(params[:page]).per(8)
+    @plans = @q.result(distinct: true).page(params[:page]).per(9)
   end
 
   def show
