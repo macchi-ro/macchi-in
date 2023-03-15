@@ -28,7 +28,14 @@
         <div class="w-70 mb-4 ms-4 em-4 mt-0"><%= f.text_area :note, class: "form-control" %></div>
     </div>
 
+    <div class="form-group mb-12 w-25 my-0">
+     <label for="exampleFormControlInput1" class="form-label w-50 ms-1 mt-4">ステータス</label></br>
+       <%= f.radio_button :plan_status, "false", class: "checkbox" %>
+       <%= f.label :plan_status, "予約中", class: "radio" %>
+       <%= f.radio_button :plan_status, "true", class: "checkbox" %>
+       <%= f.label :plan_status, "退会済", class: "radio" %>
+     </div>
+
        <%= f.submit '▶編集確定', class:'btn btn-sm btn-success m-2' %>
         <% end %>
-         <%= link_to "▷予約削除",admin_reservation_path(@reservation.id), method: :delete, data: {confirm: "削除しますか？"}, class:'btn btn-sm btn-danger px-2 m-2' %>
     </div>

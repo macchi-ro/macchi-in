@@ -10,6 +10,7 @@ class CreateReservations < ActiveRecord::Migration[6.1]
       t.integer :room_number, null: false
       t.string :note, null: false
       t.integer :including_tax_total_amount, null: false
+      t.boolean :plan_status, null: false, default: false
       t.timestamps
     end
   end

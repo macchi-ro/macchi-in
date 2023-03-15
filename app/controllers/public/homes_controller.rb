@@ -1,5 +1,6 @@
 class Public::HomesController < ApplicationController
   def top
+   @informations = Information.all.order(created_at: :desc)
   end
 
   def guest_sign_in

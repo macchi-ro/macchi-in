@@ -22,6 +22,7 @@ scope module: :public do
       end
   end
   resources :comments, only: [:create, :index, :destroy]
+  resources :informations, only: [:show, :index]
 end
 
   # 管理者側のルーティング設定
@@ -33,12 +34,14 @@ end
        get 'search'
       end
     end
+    patch '/reservations/withdrawal' => 'reservations#withdrawal', as: 'withdrawal'
     resources :reservations, only: [:show, :index, :edit, :update, :destroy] do
       collection do
        get 'search'
       end
     end
     resources :comments, only: [:index, :edit, :update, :destroy]
+    resources :informations, only: [:index, :edit, :update, :destroy, :create]
   end
 
 # 顧客用

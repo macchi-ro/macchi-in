@@ -1,0 +1,13 @@
+<section class="container">
+  <h4 class="display-6 m-4 shadow-sm h-auto w-25">おしらせ一覧</h4>
+        <ul class="news-list">
+          <% @informations.each do |information| %>
+            <li class="item">
+              <%= link_to information_path(information.id) do %>
+                    <p class="date "><%= information.created_at.strftime('%Y/%m/%d') %></p>
+                    <p class="title" style="width: 600px"><%= information.title %></p>
+               <% end %>
+            </li>
+          <% end %>
+          </ul>
+</section>

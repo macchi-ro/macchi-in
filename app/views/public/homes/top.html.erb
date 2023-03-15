@@ -1,27 +1,27 @@
 <body>
 <section class="container mx-auto ">
   <div class="row mx-auto m-5">
-     <div class="col-12 mx-auto">
+     <div class="col-sm-12 col-xs-6 mx-auto">
   　　    <%= image_tag "MACCHI-TOP.png", width: "100%", height: "400px",class:"card-img-top" %>
   　  </div>
   　</div>
  　<div class="row mx-auto">
   　　  <% if customer_signed_in? %>
-  　　<div class="col-3 mx-auto">
+  　　<div class="col-sm-3 col-xs-12 mx-auto">
              <div>
               <%= link_to rooms_path,class: 'm-2 nav-link btn btn-outline-secondary' do %>
                 部屋一覧
               <% end %>
              </div>
             </div>
-      <div class="col-3 mx-auto">
+      <div class="col-sm-3 col-xs-12 mx-auto">
              <div>
               <%= link_to plans_path, class:'m-2 nav-link btn btn-outline-secondary' do %>
                プラン一覧
               <% end %>
              </div>
             </div>
-      <div class="col-3 mx-auto">
+      <div class="col-sm-3 col-xs-12 mx-auto">
              <div>
               <%= link_to comments_path,class: 'm-2 nav-link btn btn-outline-secondary' do %>
                施設概要/レビュー
@@ -35,37 +35,26 @@
         <% end %>
  　<div class="row mx-auto">
      <div class="col-12 mx-auto">
-  　　  <h5 class="display-6 m-4 shadow-sm  w-50">お知らせ</h5>
+  　　  <h5 class="display-6 m-4 shadow-sm  w-50">新着お知らせ</h5>
         <ul class="news-list">
+          <% @informations.first(4).each do |information| %>
             <li class="item">
-                <a href="#">
-                    <p class="date">2022/12/15</p>
-                    <p class="title">冬季期間限定メニューの提供を開始いたしました。</p>
-                </a>
+              <%= link_to information_path(information.id) do %>
+                    <p class="date "><%= information.created_at.strftime('%Y/%m/%d') %></p>
+                    <p class="title" style="width: 600px"><%= information.title %></p>
+               <% end %>
             </li>
-            <li class="item">
-                <a href="#">
-                    <p class="date">2023/1/1</p>
-                    <p class="title">年末年始期間の食事処の営業時間：18:00 ～  20:30(LO 20:00)</p>
-                </a>
-            </li>
-            <li class="item">
-                <a href="#">
-                    <p class="date">2023/2/7</p>
-                    <p class="title">期間限定トク割プラン完売致しました。ご予約ありがとうございます。</p>
-                </a>
-            </li>
-            <li class="item">
-                <a href="#">
-                    <p class="date">2023/2/10</p>
-                    <p class="title">区画整理に伴い2月15日まで駐車場が込み合う可能性が御座います。</p>
-                </a>
-            </li>
+          <% end %>
           </ul>
+          <div class="text-right m-2">
+            <%= link_to informations_path do %>
+            > > 一覧を見る
+            <% end %>
+          </div>
         </div>
        </div>
      　<div class="row mx-auto m-5">
-        <div class="col-4 mx-auto">
+        <div class="col-sm-4 col-xs-12 mx-auto">
            <div class="card" style="width: 18rem;">
             <%= image_tag "home1.jpg", width: "100%", height: "200px",class:"card-img-top" %>
           <div class="card-body">
@@ -75,7 +64,7 @@
          </div>
         </div>
 
-        <div class="col-4 mx-auto">
+        <div class="col-sm-4 col-xs-12 mx-auto">
            <div class="card" style="width: 18rem;">
             <%= image_tag "home2.jpg", width: "100%", height: "200px",class:"card-img-top" %>
           <div class="card-body">
@@ -85,7 +74,7 @@
          </div>
         </div>
 
-        <div class="col-4 mx-auto">
+        <div class="col-sm-4 col-xs-12 mx-auto">
            <div class="card" style="width: 18rem;">
             <%= image_tag "home3.jpg", width: "100%", height: "200px",class:"card-img-top" %>
           <div class="card-body">

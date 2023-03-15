@@ -1,0 +1,51 @@
+<body>
+<section class="container mx-auto ">
+
+  <div class="row mx-auto">
+ 　  <div class="col-12 mx-auto">
+<!--お知らせ投稿-->
+     <h4 class="display-6 m-4 shadow-sm mx-auto w-100">新規お知らせ</h4>
+     <!--エラーメッセージ-->
+
+     <%= form_with model: Information, url:admin_informations_path, local:true do |f| %>
+          <label>表題</label>
+          <div><%= f.text_field :title, value: @title, class: "form-control w-75" %></div>
+
+          <label>内容</label>
+          <div><%= f.text_area :content, size: "30x10", value: @content, class: "form-control w-75" %></div>
+          <div><%= f.submit '▶投稿する', class:'btn btn-primary m-2' %></div>
+          <% end %>
+    </div>
+   </div>
+
+     <h4 class="display-6 m-4 shadow-sm mx-auto w-100">お知らせ一覧</h4>
+        <table class="table table-striped table-hover">
+         <thead>
+          <tr>
+           <th>投稿日時</th>
+           <th style="width: 300px height: 100px">表題</th>
+           <th style="width: 600px">内容</th>
+           <th></th>
+           <th></th>
+          </tr>
+       </thead>
+        <tbody>
+         <tr>
+          <% @informations.each do |information| %>
+          <td style="height: 60px"><%= information.created_at.strftime('%Y/%m/%d') %></td>
+          <td style="height: 60px"><%= information.title %></td>
+          <td><%= information.content %></td>
+          <td>
+            <%= link_to "▷削除",admin_information_path(information.id), method: :delete, data: {confirm: "削除しますか？"}, class:'btn btn-sm btn-danger' %>
+          </td>
+          <td>
+            <%= link_to "▷編集",edit_admin_information_path(information.id), class:'btn btn-sm btn-success' %>
+          </td>
+         </tr>
+         <% end %>
+          </tbody>
+         </table>
+
+     </div>
+  </section>
+ </body>

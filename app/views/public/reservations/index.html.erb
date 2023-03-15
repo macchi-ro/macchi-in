@@ -2,6 +2,7 @@
 <table class="table table-bordered mx-auto" style="width: 90%">
   <thead style="background-color: ghostwhite">
     <tr>
+      <th style="width: 110px">ステータス</th>
       <th style="width: 100px">宿泊日</th>
       <th style="width: 100px">泊数</th>
       <th style="width: 100px">人数</th>
@@ -15,6 +16,13 @@
   <tbody>
     <% @reservations.each do |reservation| %>
     <tr>
+        <td>
+         <% if reservation.plan_status %>
+          <div class="text-danger">取消済</div>
+         <% else %>
+          <div class="text-success">予約中</div>
+         <% end %>
+         </td>
         <td><%= reservation.lodgment_date.strftime('%Y/%m/%d') %></td>
         <td><%= reservation.nights_number %>泊</td>
         <td><%= reservation.count %>人</td>

@@ -34,5 +34,5 @@
 - IDE：Cloud9
 
 ## 使用素材
-- 使用検討中です。
-https://www.photo-ac.com/main/search?q=%E3%83%9B%E3%83%86%E3%83%AB&srt=dlrank&qt=&p=2
+- 引用画像サイト https://www.photo-ac.com/main/search?q=%E3%83%9B%E3%83%86%E3%83%AB&srt=dlrank&qt=&p=2
+- 引用ロゴサイト https://www.shopify.com/tools/logo-maker?syclid=cfm3rtbgulukn7rbs92g&utm_campaign=Hatchful&utm_content=Onboarding_1&utm_medium=email&utm_source=mozart

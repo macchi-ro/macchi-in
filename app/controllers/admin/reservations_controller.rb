@@ -34,6 +34,6 @@ class Admin::ReservationsController < ApplicationController
 
   private
   def reservation_params
-    params.require(:reservation).permit(:lodgment_date, :nights_number, :count, :room_number, :note, :including_tax_total_amount, :room_id, :plan_id, :customer_id)
+    params.require(:reservation).permit(:lodgment_date, :nights_number, :count, :room_number, :note, :including_tax_total_amount, :room_id, :plan_id, :customer_id, :plan_status)
   end
 end
