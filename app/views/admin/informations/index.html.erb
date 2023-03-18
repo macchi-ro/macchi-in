@@ -6,8 +6,17 @@
 <!--お知らせ投稿-->
      <h4 class="display-6 m-4 shadow-sm mx-auto w-100">新規お知らせ</h4>
      <!--エラーメッセージ-->
+     <% if @information.errors.any? %>
+     <div class="alert alert-danger w-50" role="alert">
+       <ul>
+         <% @information.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+         <% end %>
+       </ul>
+      </div>
+     <% end %>
 
-     <%= form_with model: Information, url:admin_informations_path, local:true do |f| %>
+     <%= form_with model: @information, url:admin_informations_path, local:true do |f| %>
           <label>表題</label>
           <div><%= f.text_field :title, value: @title, class: "form-control w-75" %></div>
 

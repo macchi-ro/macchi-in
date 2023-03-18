@@ -14,6 +14,7 @@ class Admin::InformationsController < ApplicationController
 
   def index
    @informations = Information.all
+   @information = Information.new
   end
 
   def edit

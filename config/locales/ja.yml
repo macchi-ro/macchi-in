@@ -44,6 +44,9 @@
           nights_number: "泊数"
           count: "人数"
           room_number: "室数"
+        information:
+          title: "表題"
+          content: "内容"
     enums:
       plan:
         meal:
