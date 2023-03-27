@@ -28,9 +28,12 @@ class Admin::PlansController < ApplicationController
 
   def update
    @plan = Plan.find(params[:id])
-   @plan.update(plan_params)
-   flash[:notice] = "プラン更新に成功しました！"
-   redirect_to admin_plan_path(@plan)
+   if @plan.update(plan_params)
+      flash[:notice] = "プラン情報更新に成功しました！"
+      redirect_to admin_plan_path(@plan)
+   else
+    render :edit
+   end
   end
 
   private

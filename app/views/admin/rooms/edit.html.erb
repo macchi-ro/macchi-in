@@ -1,5 +1,14 @@
 <h4 class="display-6 m-4 shadow-sm h-auto w-25">部屋タイプ編集</h4>
-
+     <!--エラーメッセーシ-->
+     <% if @room.errors.any? %>
+     <div class="alert alert-danger w-25 ml-3" role="alert">
+       <ul>
+         <% @room.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+         <% end %>
+       </ul>
+      </div>
+     <% end %>
   <%= form_with model: @room, url: admin_room_path(@room.id), method: :patch do |f| %>
 
   <div class="container m-0">

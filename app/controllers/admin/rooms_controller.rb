@@ -22,9 +22,12 @@ class Admin::RoomsController < ApplicationController
 
   def update
    @room = Room.find(params[:id])
-   @room.update(room_params)
-   flash[:notice] = "部屋情報の更新に成功しました！"
-   redirect_to admin_rooms_path
+   if @room.update(room_params)
+      flash[:notice] = "部屋情報の更新に成功しました！"
+      redirect_to admin_rooms_path
+   else
+    render :edit
+   end
   end
 
   private

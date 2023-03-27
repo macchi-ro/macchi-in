@@ -1,6 +1,16 @@
 
 <div class="container">
   <h4 class="display-6 m-4 shadow-sm m-5 w-25">マイページ編集</h4>
+       <!--エラーメッセージ-->
+     <% if @customer.errors.any? %>
+      <div class="alert alert-danger w-75" role="alert">
+          <ul>
+            <% @customer.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+      </div>
+     <% end %>
   <div class="row flex-nowrap">
     <div class="col-md-3 col-sm-2">
       <div class="mt-2 mb-4">メール</div>
@@ -13,54 +23,55 @@
     </div>
 
 
-   <div class="col-md-8 col-sm-9 flex-nowrap mb-3">
-    <%= form_with model: @customer, url: customers_path(@customer), local: true, method: :patch do |f| %>
-    <div class="form-group my-2 w-50">
-      <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-    </div>
+    <div class="col-md-8 col-sm-9 flex-nowrap mb-3">
+      <%= form_with model: @customer, url: customers_path(@customer), method: :patch do |f| %>
+        <div class="form-group my-2 w-50">
+          <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
 
-  <div class="row my-2">
-     <div class="col">
-      <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control" %>
-     </div>
+        <div class="row my-2">
+          <div class="col">
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control" %>
+          </div>
 
-    <div class="col">
-      <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control" %>
-    </div>
-   </div>
+          <div class="col">
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control" %>
+          </div>
+        </div>
 
-  <div class="row my-2">
-     <div class="col">
-      <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name", class: "form-control" %>
-     </div>
+        <div class="row my-2">
+          <div class="col">
+             <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name", class: "form-control" %>
+          </div>
 
-    <div class="col">
-      <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name", class: "form-control" %>
-    </div>
-   </div>
+          <div class="col">
+            <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name", class: "form-control" %>
+          </div>
+        </div>
 
-    <div class="form-group my-2 w-25 ">
-     <%= f.text_field :address_number, autofocus: true, autocomplete: "address_number", class: "form-control" %>
-    </div>
+        <div class="form-group my-2 w-25 ">
+          <%= f.text_field :address_number, autofocus: true, autocomplete: "address_number", class: "form-control" %>
+        </div>
 
-    <div class="form-group my-2 w-50 ">
-     <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control" %>
-    </div>
+        <div class="form-group my-2 w-50 ">
+          <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control" %>
+        </div>
 
-    <div class="form-group my-3 w-50 ">
-       <%= f.radio_button :gender, "男性", class: "checkbox" %>
-       <%= f.label :gender, "男性", class: "radio" %>
-       <%= f.radio_button :gender, "女性", class: "checkbox" %>
-       <%= f.label :gender, "女性", class: "radio" %>
-    </div>
+        <div class="form-group my-3 w-50 ">
+          <%= f.radio_button :gender, "男性", class: "checkbox" %>
+          <%= f.label :gender, "男性", class: "radio" %>
+          <%= f.radio_button :gender, "女性", class: "checkbox" %>
+          <%= f.label :gender, "女性", class: "radio" %>
+        </div>
 
-    <div class="form-group my-3 w-50 ">
-      <%= f.select :age, [[20], [30], [40], [50], [60], [70], [80]], include_blank: "年代選択" %>代
+        <div class="form-group my-3 w-50 ">
+          <%= f.select :age, [[20], [30], [40], [50], [60], [70], [80]], include_blank: "年代選択" %>代
+        </div>
+
+        <div class=" w-50">
+          <%= f.submit '▶編集完了', class:'btn btn-sm btn-success px-4' %>
+        </div>
+      <% end %>
     </div>
   </div>
- </div>
-     <div class=" w-50">
-     <%= f.submit '▶編集完了', class:'btn btn-sm btn-success px-4' %>
-     <% end %>
-    </div>
 </div>

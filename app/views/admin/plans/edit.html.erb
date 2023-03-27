@@ -1,4 +1,14 @@
 <h4 class="display-6 m-4 shadow-sm h-auto w-25">プラン編集</h4>
+         <!--エラーメッセージ-->
+     <% if @plan.errors.any? %>
+     <div class="alert alert-danger w-25 ml-3" role="alert">
+       <ul>
+         <% @plan.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+         <% end %>
+       </ul>
+     <% end %>
+     </div>
 
    <%= form_with model: @plan, url: admin_plan_path(@plan.id), method: :patch do |f| %>
 

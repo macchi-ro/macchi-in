@@ -48,7 +48,10 @@
 </table>
 
 <div class="mx-auto w-50">
- <%= link_to '編集する', edit_customer_registration_path, class:'btn btn-sm btn-success px-4' %>
- <%= link_to "退会する",withdrawal_path, method: :patch, data: {confirm: "本当に退会しますか？"}, class:'btn btn-sm btn-danger px-4' %>
+  <% if  @customer.gender ==  "ゲスト" %>
+  <% else %>
+   <%= link_to '編集する', edit_customer_registration_path, class:'btn btn-sm btn-success px-4' %>
+   <%= link_to "退会する",withdrawal_path, method: :patch, data: {confirm: "本当に退会しますか？"}, class:'btn btn-sm btn-danger px-4' %>
+  <% end %>
 </div>
 

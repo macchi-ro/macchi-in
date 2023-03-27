@@ -21,13 +21,9 @@
      <tr>
       <td><%= plan.id %></td>
       <td>
-       <% if plan.image.attached? %>
          <%= image_tag plan.image, size: "60x60" %>
-       <% else %>
-         <%= image_tag 'no_image.jpg', size: "60x60" %>
-       <% end %>
       </td>
-      <td><%= link_to plan.name, admin_plan_path(plan.id) %></td>
+      <td><%= link_to plan.name.truncate(15), admin_plan_path(plan.id) %></td>
       <td><%= (plan.tax_excluded_fee * 1.1).floor %>円</td>
       <td><%= plan.meal_i18n %></td>
       <td><% if plan.sales_status == "on_sale" %>

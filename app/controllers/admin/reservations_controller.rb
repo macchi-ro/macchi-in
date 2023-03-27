@@ -22,8 +22,12 @@ class Admin::ReservationsController < ApplicationController
 
   def update
      @reservation = Reservation.find(params[:id])
-     @reservation.update(reservation_params)
-     redirect_to admin_reservation_path(@reservation)
+     if @reservation.update(reservation_params)
+        flash[:notice] = "予約情報の更新に成功しました！"
+        redirect_to admin_reservation_path(@reservation)
+     else
+      render :edit
+     end
   end
 
   def destroy

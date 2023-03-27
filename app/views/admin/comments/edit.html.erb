@@ -1,4 +1,14 @@
 <h4 class="display-6 m-4 shadow-sm h-auto w-25">投稿編集</h4>
+     <!--エラーメッセージ-->
+     <% if @comment.errors.any? %>
+     <div class="alert alert-danger w-25 ml-3" role="alert">
+       <ul>
+         <% @comment.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+         <% end %>
+       </ul>
+      </div>
+     <% end %>
 
   <%= form_with model: @comment, url: admin_comment_path(@comment.id), method: :patch do |f| %>
    <div class="mb-3">

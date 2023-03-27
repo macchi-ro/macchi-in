@@ -1,5 +1,14 @@
 <h4 class="display-6 m-4 shadow-sm h-auto w-25">予約編集</h4>
-
+     <!--エラーメッセージ-->
+     <% if @reservation.errors.any? %>
+     <div class="alert alert-danger w-25 ml-3" role="alert">
+       <ul>
+         <% @reservation.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+         <% end %>
+       </ul>
+     </div>
+     <% end %>
   <%= form_with model: @reservation, url: admin_reservation_path(@reservation.id), method: :patch, data: {confirm: "更新しますか？"} do |f| %>
   <div class="container m-0">
    <div class="row-4">
@@ -33,7 +42,7 @@
        <%= f.radio_button :plan_status, "false", class: "checkbox" %>
        <%= f.label :plan_status, "予約中", class: "radio" %>
        <%= f.radio_button :plan_status, "true", class: "checkbox" %>
-       <%= f.label :plan_status, "退会済", class: "radio" %>
+       <%= f.label :plan_status, "取消済", class: "radio" %>
      </div>
 
        <%= f.submit '▶編集確定', class:'btn btn-sm btn-success m-2' %>

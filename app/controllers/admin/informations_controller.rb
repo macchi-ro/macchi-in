@@ -23,8 +23,12 @@ class Admin::InformationsController < ApplicationController
 
   def update
    @information = Information.find(params[:id])
-   @information.update(information_params)
-   redirect_to admin_informations_path
+   if @information.update(information_params)
+      flash[:notice] = "お知らせ情報の更新に成功しました！"
+      redirect_to admin_informations_path
+   else
+    render :edit
+   end
   end
 
   def destroy

@@ -13,7 +13,7 @@ class Admin::CustomersController < ApplicationController
   def index
     @q = Customer.ransack(params[:q])
     @ransack_customers = @q.result(distinct: true)
-    @customers = @q.result(distinct: true)
+    @customers = @q.result(distinct: true).where.not(gender: 'ゲスト')
   end
 
   def edit
@@ -22,9 +22,12 @@ class Admin::CustomersController < ApplicationController
 
   def update
     @customer = Customer.find(params[:id])
-    @customer.update(customer_params)
-    flash[:notice] = "顧客情報を更新しました！"
-     redirect_to admin_customers_path
+    if @customer.update(customer_params)
+       flash[:notice] = "顧客情報を更新しました！"
+       redirect_to admin_customers_path
+    else
+     render :edit
+    end
   end
 
     private
