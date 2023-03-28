@@ -16,6 +16,7 @@ class Plan < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+
   enum meal: { no_meal: 0, has_meal: 1 }
 
   enum sales_status: { stopping_sales: 0, on_sale: 1 }

@@ -13,7 +13,13 @@ class Public::CommentsController < ApplicationController
   end
 
   def index
-   @comments = Comment.all
+   if params[:latest]
+     @comments = Comment.latest.page(params[:page]).per(5)
+   elsif params[:old]
+     @comments = Comment.old.page(params[:page]).per(5)
+   else
+     @comments = Comment.all.page(params[:page]).per(5)
+   end
    @comment = Comment.new
   end
 

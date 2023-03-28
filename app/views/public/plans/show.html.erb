@@ -34,11 +34,13 @@
       <%= f.hidden_field :plan_id, :value => @plan.id %>
       <% end %>
     <div class="form-group mb-12 w-25 mx-auto">
-      <% if @plan.sales_status == "on_sale" %>
-      <%= link_to "▶予約する", new_plan_reservation_path(@plan), class:'btn btn-primary mx-auto px-5 py-3' %>
-        <% else %>
+      <% if  @customer.gender ==  "ゲスト" %>
+        <h4 class="text-danger mx-auto">ゲストユーザー予約不可</h4>
+      <% elsif @plan.sales_status == "on_sale" %>
+       <%= link_to "▶予約する", new_plan_reservation_path(@plan), class:'btn btn-primary mx-auto px-5 py-3' %>
+      <% else %>
         <h4 class="text-secondary mx-auto">好評により売切れ</h4>
-        <% end %>
+      <% end %>
     </div>
    </div>
   </section>

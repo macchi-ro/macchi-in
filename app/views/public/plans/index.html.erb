@@ -1,8 +1,17 @@
 <body>
 <h4 class="display-6 m-4 shadow-sm h-auto w-25">プラン一覧 (全<%= @plans.count %>件) </h4>
-
+ <table class="table w-25 m-4">
+    <thead>
+       <tr>
+        <th><%= sort_link(@q, :id, "投稿順" )%></th>
+        <th><%= sort_link(@q, :name, "名前順")%></th>
+        <th><%= sort_link(@q, :tax_excluded_fee, "価格順")%></th>
+       </tr>
+    </thead>
+ </table>
 <!--検索フォーム-->
 <%= search_form_for @q,url: plans_path do |f| %>
+
 <div class="input-group w-50 m-4">
     <%= f.search_field :name_cont, class:"form-control input-group-prepend mx-2", placeholder:"プラン名" %></br>
 
