@@ -90,19 +90,25 @@
            <th style="width: 300px height: 100px">表題</th>
            <th style="width: 600px">内容</th>
            <th></th>
+           <th></th>
           </tr>
        </thead>
         <tbody>
          <tr>
           <% @comments.each do |comment| %>
-          <td style="height: 60px"><%= comment.title %></td>
-          <td><%= comment.content %></td>
-          <td>
+           <%= link_to comment_path(comment.id) do %>
+            <td style="height: 60px"><%= comment.title %></td>
+            <td><%= comment.content %></td>
+           <% end %>
+           <td>
+            <%= link_to ">投稿詳細",comment_path(comment.id), class:'btn btn-sm btn-primary' %>
+           </td>
+           <td>
             <% if comment.customer_id == current_customer.id %>
             <%= link_to "▷投稿削除",comment_path(comment.id), method: :delete, data: {confirm: "削除しますか？"}, class:'btn btn-sm btn-danger' %>
             <% else %>
             <% end %>
-          </td>
+           </td>
          </tr>
          <% end %>
           </tbody>

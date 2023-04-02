@@ -21,7 +21,7 @@ scope module: :public do
       get :favorites
       end
   end
-  resources :comments, only: [:create, :index, :destroy]
+  resources :comments, only: [:create, :index, :destroy, :show]
   resources :informations, only: [:show, :index]
 end
 
