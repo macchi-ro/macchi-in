@@ -1,6 +1,6 @@
 
 <body>
-<section class="container mx-auto ">
+ <section class="container mx-auto ">
   <div class="row mx-auto">
  　  <div class="col-12 mx-auto">
      <h4 class="display-6 m-4 shadow-sm mx-auto w-100">施設概要</h4>
@@ -53,7 +53,7 @@
   <% if  @customer.gender ==  "ゲスト" %>
   <% else %>
      <h4 class="display-6 m-4 shadow-sm mx-auto w-100">お客様の声</h4>
-     <!--エラーメッセーシ-->
+     <!--エラーメッセージ-->
      <% if @comment.errors.any? %>
      <div class="alert alert-danger w-50" role="alert">
        <ul>
@@ -65,7 +65,7 @@
      <% end %>
 
 
-     <%= form_with model: @comment, url:comments_path, local:true do |f| %>
+     　　<%= form_with model: @comment, url:comments_path, local:true do |f| %>
           <label>表題</label>
           <div><%= f.text_field :title, value: @title, class: "form-control w-50" %></div>
 
@@ -75,7 +75,7 @@
           <div><%= f.submit '▶投稿する', class:'btn btn-primary m-2' %></div>
           <% end %>
     </div>
-   </div>
+  </div>
   <% end %>
   <div class="row mx-auto">
  　  <div class="col-12 mx-auto">
